@@ -50,6 +50,7 @@ Running "python3 -m webtimeline" will then run the following script and will ser
 
     asyncio.run(runchart())
 
+Alternatively, if you use UV, simply running "uvx webtimeline" will load and run the above.
 
 The web page is purposely minimal, without any CSS. The code could be obtained from github and the Mako templates altered for a more pleasant view.
 
