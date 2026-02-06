@@ -62,7 +62,7 @@ Dependencies are:
 
 Details of the WebTimeLine class are:
 
-## WebTimeLine(host, port, basepath, hours, height, width, title, description)
+**WebTimeLine(host, port, basepath, hours, height, width, title, description)**
 
 host is a string, default 'localhost'
 
@@ -80,21 +80,21 @@ title, if given is a string shown at the top of the graph.
 
 description, if given, is a string shown at the bottom of the graph.
 
-## Methods
+**Methods**
 
-## serve(tg)
+**serve(tg)**
 
-Set this as a task to serve the web page, tg should be a taskgroup
+(async method) Set this as a task to serve the web page, tg should be a taskgroup
 
-## putpoint(t, v)
+**putpoint(t, v)**
 
-await this to add a point to the graph.
+(async method) await this to add a point to the graph.
 
 t must be a time.time() point.
 
 v is the value to be plotted.
 
-## set_colors(backcol, gridcol, axiscol, chartbackcol, linecol)
+**set_colors(backcol, gridcol, axiscol, chartbackcol, linecol)**
 
 If called sets chart colours.
 
@@ -118,15 +118,15 @@ RGB/RGBA: "rgb(255,0,0)" or "rgba(255,0,0,0.5)" (with opacity).
 
 HSL/HSLA: "hsl(0,100%,50%)" or "hsla(0,100%,50%,0.5)" (hue, saturation, lightness, alpha)
 
-## set_title(title)
+**set_title(title)**
 
 Sets the title of the graph, and updates the graph with the new title.
 
-## set_description(description)
+**set_description(description)**
 
 Sets the description of the graph, and updates the graph with the new description.
 
-## set_y_axis(ymin, ymax, yintervals, yformat):
+**set_y_axis(ymin, ymax, yintervals, yformat)**
 
 If this is not called, an automatic y scaling will be used.
 
