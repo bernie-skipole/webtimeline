@@ -18,7 +18,7 @@ from .wtl import WebTimeLine
 
 # install dependencies
 # pip install litestar[standard]
-# pip install litestar[mako]
+# pip install mako
 # pip install minilineplot
 
 
@@ -50,35 +50,6 @@ from .wtl import WebTimeLine
 ## And run the loop
 # asyncio.run(runchart())
 
-#######################################
-
-if __name__ == "__main__":
-
-    ### This creates an example web service, with random measurements every ten seconds
-
-    import asyncio, time, random
-
-    ## Create WebTimeLine object
-    tline =  WebTimeLine(host='localhost', port=8000, basepath=None, hours=1, title="My Title", description="Data display")
-
-    tline.set_y_axis(0.0, 80.0, 4, ".2f")
-
-    async def my_function(tline):
-        "Create data and send it using tline.putpoint()"
-        while True:
-            value = random.uniform(30, 70)   # random value used here
-            await tline.putpoint(time.time(), value)
-            await asyncio.sleep(10) # pause 10 seconds between readings
-
-    ## create two tasks, one runs the web server, one gathers data
-
-    async def runchart():
-        async with asyncio.TaskGroup() as tg:
-            tg.create_task( tline.serve(tg) )
-            tg.create_task( my_function(tline) )
-
-
-    asyncio.run(runchart())
 
 
 
