@@ -13,10 +13,18 @@ class WebTimeLine:
     def __init__(self, host='localhost', port=8000, basepath=None, hours=4, height=600, width=800, title="", description=""):
         self._host = host
         self._port = port
-        self._basepath = basepath
         self._queue = asyncio.Queue()
         self._mkchart = MakeChart(hours=hours, height=height, width=width, title=title, description=description, queue = self._queue)
         self._server = None
+
+        # ensure basepath is either None, or a string with leading and tailing '/' characters
+        if basepath:
+            basepath = basepath.strip("/. ")
+        if basepath:
+            self._basepath = f"/{basepath}/"
+        else:
+            self._basepath = None
+
 
 
     async def serve(self, tg):
