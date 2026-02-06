@@ -30,5 +30,6 @@ if __name__ == "__main__":
         async with asyncio.TaskGroup() as tg:
             tg.create_task( tline.serve(tg) )
             tg.create_task( my_function(tline) )
+            print("Now serving at localhost:8000")
 
     asyncio.run(runchart())
