@@ -67,7 +67,7 @@ host is a string, default 'localhost'
 
 port is an integer, default 8000
 
-basepath is either None, or a string such as '/graph' which will set a path segment which will be prepended to the URL path.
+basepath is either None, or a string such as '/graph/' which will set a path segment which will be prepended to the URL path.
 
 hours is the hours, between 1 and 48, displayed along the x axis.
 

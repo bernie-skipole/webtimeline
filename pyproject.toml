@@ -1,0 +1,23 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "webtimeline"
+authors = [{name = "Bernard Czenkusz", email = "bernie@skipole.co.uk"}]
+license = "Unlicense"
+classifiers = ["Topic :: Scientific/Engineering", "Topic :: Office/Business", "Topic :: Education"]
+version = "0.0.1"
+description="Python Web served time graph"
+readme = "README.md"
+requires-python = ">=3.10"
+keywords=['chart', 'line', 'plot', 'graph', 'web', 'served', 'time']
+dependencies = ["litestar[standard]>=2.19.0", "Mako>=1.3.10", "minilineplot>=0.0.8"]
+
+[project.urls]
+Source = "https://github.com/bernie-skipole/webtimeline"
+
+[project.scripts]
+webtimeline = "webtimeline.__main__:main"
+
+
