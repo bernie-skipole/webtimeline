@@ -51,7 +51,7 @@ Running "python3 -m webtimeline" will then run the following script and will ser
 
 Alternatively, if you use UV, simply running "uvx webtimeline" will load and run the above.
 
-The web page is purposely minimal, without any CSS. The code could be obtained from github and the Mako templates altered for a more pleasant view.
+The web page is purposely minimal, without any CSS. The code could be obtained from github and the Mako templates altered for a more pleasant view. Feel free to adapt, this is public domain using the 'unlicense'.
 
 Dependencies are:
 
