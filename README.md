@@ -4,8 +4,6 @@ Python Web served time graph
 
 This provides a class 'WebTimeLine' which generates a web server, serving a page with a lineplot.
 
-This is an example, using HTMX, MAKO and LITESTAR and is primarily intended as a record for myself.
-
 A coroutine method of the class can be used to add points, in the form of (time.time(), value)
 
 These are dynamically added to the plot, and the web page will be updated as points are added.
@@ -37,6 +35,7 @@ Running "python3 -m webtimeline" will then run the following script and will ser
         "Create data and send it using tline.putpoint()"
         while True:
             value = random.uniform(30, 70)   # random value used here
+            tline.set_description(f"Latest value = {value:.1f}")
             await tline.putpoint(time.time(), value)
             await asyncio.sleep(10) # pause 10 seconds between readings
 
@@ -90,9 +89,11 @@ description, if given, is a string shown at the bottom of the graph.
 
 (async method) await this to add a point to the graph.
 
-t must be a time.time() point.
+t must be a time.time() point, that is, a float which is seconds since January 1st 1970.
 
 v is the value to be plotted.
+
+The following methods, if called, will take affect on the next chart update when putpoint is called.
 
 **set_colors(backcol, gridcol, axiscol, chartbackcol, linecol)**
 
@@ -120,19 +121,35 @@ HSL/HSLA: "hsl(0,100%,50%)" or "hsla(0,100%,50%,0.5)" (hue, saturation, lightnes
 
 **set_title(title)**
 
-Sets the title of the graph, and updates the graph with the new title.
+Sets a new title on the graph.
 
 **set_description(description)**
 
-Sets the description of the graph, and updates the graph with the new description.
+Sets a new description at the bottom of the graph.
 
 **set_y_axis(ymin, ymax, yintervals, yformat)**
+
+Sets the y axis minimum and maximum values.
 
 If this is not called, an automatic y scaling will be used.
 
 If it is called, then these values will be set, however if any y point exceeds these values, then the chart will revert to auto-scaling.
 
-If you wish to revert to autoscaling, call this with None values.
+If you wish to purposely revert to auto-scaling, call this with None values.
+
+yintervals sets the grid and number intervals up the y axis.
+
+yformat is a string which defines how the y axis numbers are displayed. So the string ".2f" will show numbers with two decimal places.
+
+The auto-scaling feature will inspect the line points, and attempt to set all these values automatically.
+
+**set_localtime(tflag)**
+
+If tflag is True, (the default) the time values on the x axis will show local time (local time of the server).
+
+If tflag is False, the time values will be UTC.
+
+
 
 
 

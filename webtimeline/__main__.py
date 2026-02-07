@@ -19,6 +19,7 @@ async def my_function(tline):
     "Create data and send it using tline.putpoint()"
     while True:
         value = random.uniform(30, 70)   # random value used here
+        tline.set_description(f"Latest value = {value:.1f}")
         await tline.putpoint(time.time(), value)
         await asyncio.sleep(10) # pause 10 seconds between readings
 

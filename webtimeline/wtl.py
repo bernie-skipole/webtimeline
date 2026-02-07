@@ -50,10 +50,10 @@ class WebTimeLine:
         self._mkchart.set_colors(backcol, gridcol, axiscol, chartbackcol, linecol)
 
 
-    def set_title(self, title):
+    def set_title(self, title=""):
         self._mkchart.set_title(title)
 
-    def set_description(self, description):
+    def set_description(self, description=""):
         self._mkchart.set_description(description)
 
     def set_y_axis(self, ymin, ymax, yintervals, yformat):
@@ -62,6 +62,11 @@ class WebTimeLine:
            exceeds the values, then the chart will revert to auto-scaling.
            If you wish to revert to autoscaling, call this with None values."""
         self._mkchart.set_y_axis(ymin, ymax, yintervals, yformat)
+
+    def set_localtime(self, tflag=True):
+        """If tflag is True,the time values on the x axis will show local time (local time of the server).
+           If tflag is False, the time values will be UTC."""
+        self._mkchart.localtime(tflag)
 
 
 class MakeChart:
@@ -85,6 +90,8 @@ class MakeChart:
         self.ymax = None
         self.yintervals = None
         self.yformat = None
+
+        self.localtime = True
 
         # this event is triggered when a chart event occurs
         self.chart_event = asyncio.Event()
@@ -128,7 +135,8 @@ class MakeChart:
             self.chart.ymin = self.ymin
             self.chart.yintervals = self.yintervals
             self.chart.yformat = self.yformat
-        self.chart.auto_time_x(hourspan = self.hours)
+        self.chart.auto_time_x(hourspan = self.hours, localtime = self.localtime)
+
         # flag a chart event
         self.chart_event.set()
         self.chart_event.clear()
@@ -140,17 +148,15 @@ class MakeChart:
         self.axiscol = axiscol
         self.chartbackcol = chartbackcol
         self.linecol = linecol
-        self.make_chart()
 
 
     def set_title(self, title):
         self.title = title
-        self.make_chart()
 
 
     def set_description(self, description):
         self.description = description
-        self.make_chart()
+
 
     def set_y_axis(self, ymin, ymax, yintervals, yformat):
         """If this is not called, an automatic y scaling will be used.
@@ -161,7 +167,14 @@ class MakeChart:
         self.ymax = ymax
         self.yintervals = yintervals
         self.yformat = yformat
-        self.make_chart()
+
+
+    def set_localtime(self, tflag):
+        """If tflag is True,the time values on the x axis will show local time (local time of the server).
+           If tflag is False, the time values will be UTC."""
+        self.localtime = tflag
+
+
 
 
 
