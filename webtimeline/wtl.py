@@ -39,6 +39,7 @@ class WebTimeLine:
         "Put a point timestamp, value"
         item = (t,v)
         await self._queue.put(item)
+        await asyncio.sleep(0)
 
     def set_colors(self,
                    backcol = "white",      # The background colour of the whole image
