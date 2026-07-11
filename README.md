@@ -1,5 +1,12 @@
 # webtimeline
 
+NOTE : This is now archived since I produced a much changed breaking version, so have published it under a new name. See:
+
+https://github.com/bernie-skipole/webliveplot
+
+The information below is left in case anyone is using the old version, however I suggest you have a look at the link above.
+
+
 Python Web served time graph
 
 This provides a class 'WebTimeLine' which generates a web server, serving a page with a lineplot.
